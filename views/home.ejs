@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to MyPages</title>
+    <link rel="stylesheet" href="homepage.css"> <!-- Link to your CSS -->
+    <style>
+        #logoutModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to your MyPages, <%= user.name %>!</h1> <!-- Display user's name -->
+
+    <p>What would you like to do today?</p>
+
+    <div>
+        <form id="logoutForm" action="/logout" method="POST" onsubmit="showLogoutModal(event);">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <!-- Logout Modal -->
+    <div id="logoutModal">
+        <p>Are you sure you want to log out?</p>
+        <button id="confirmLogout">Yes</button>
+        <button id="cancelLogout">No</button>
+    </div>
+
+    <script>
+        function showLogoutModal(event) {
+            event.preventDefault(); // Prevent the form from submitting immediately
+            document.getElementById("logoutModal").style.display = "block"; // Show the modal
+        }
+
+        document.getElementById("confirmLogout").onclick = function() {
+            document.getElementById("logoutForm").submit(); // Submit the form
+        };
+
+        document.getElementById("cancelLogout").onclick = function() {
+            document.getElementById("logoutModal").style.display = "none"; // Hide the modal
+        };
+    </script>
+
+</body>
+</html>
